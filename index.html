@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Birthday Surprise</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #080808;
+    color: white;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+}
+
+.title {
+    text-align: center;
+    font-size: 32px;
+    font-weight: bold;
+    padding: 30px 0 20px;
+    text-shadow: 0 0 15px white;
+}
+
+.scene {
+    position: relative;
+    width: 92%;
+    height: 520px;
+    margin: auto;
+    background: radial-gradient(circle, #250044, #07000d 75%);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* HEART */
+.heart {
+    position: absolute;
+    top: 80px;
+    left: 50%;
+    width: 70px;
+    height: 70px;
+    background: #ff70b0;
+    transform: translateX(-50%) rotate(-45deg);
+    animation: heartbeat 1s infinite;
+    box-shadow: 0 0 35px #ff70b0;
+}
+
+.heart::before,
+.heart::after {
+    content: "";
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    background: #ff70b0;
+    border-radius: 50%;
+}
+
+.heart::before {
+    top: -35px;
+    left: 0;
+}
+
+.heart::after {
+    left: 35px;
+    top: 0;
+}
+
+@keyframes heartbeat {
+    0%,100% {
+        transform: translateX(-50%) rotate(-45deg) scale(1);
+    }
+
+    50% {
+        transform: translateX(-50%) rotate(-45deg) scale(1.15);
+    }
+}
+
+/* BOW */
+.bow {
+    position: absolute;
+    left: 15px;
+    bottom: 0;
+    width: 160px;
+    height: 260px;
+}
+
+.arc {
+    position: absolute;
+    left: 20px;
+    top: 10px;
+    width: 115px;
+    height: 220px;
+    border: 6px solid #d8c98c;
+    border-left: 0;
+    border-radius: 0 120px 120px 0;
+    transform: rotate(-18deg);
+}
+
+.string {
+    position: absolute;
+    left: 48px;
+    top: 20px;
+    width: 2px;
+    height: 220px;
+    background: white;
+    transform: rotate(-18deg);
+}
+
+.arrow {
+    position: absolute;
+    left: 40px;
+    top: 125px;
+    width: 125px;
+    height: 3px;
+    background: white;
+    transform: rotate(-32deg);
+    transform-origin: left center;
+    animation: shoot 3s infinite;
+    box-shadow: 0 0 5px white;
+}
+
+.arrow::after {
+    content: "";
+    position: absolute;
+    right: -10px;
+    top: -5px;
+    border-left: 12px solid white;
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+}
+
+@keyframes shoot {
+    0% {
+        transform: rotate(-32deg) translateX(0);
+    }
+
+    35% {
+        transform: rotate(-32deg) translateX(0);
+    }
+
+    65% {
+        transform: rotate(-32deg) translateX(180px);
+    }
+
+    100% {
+        transform: rotate(-32deg) translateX(0);
+    }
+}
+
+/* CAKE */
+.cake {
+    position: absolute;
+    left: 50%;
+    bottom: 35px;
+    width: 200px;
+    height: 150px;
+
+    transform: translateX(-50%) translateY(180px);
+    opacity: 0;
+
+    animation: cakeIn 2s ease-out forwards;
+    animation-delay: 1s;
+}
+
+@keyframes cakeIn {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(180px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+/* CAKE BODY */
+.cake-body {
+    position: absolute;
+    bottom: 0;
+    width: 200px;
+    height: 100px;
+    background: linear-gradient(#ff9bc5, #d94d8d);
+    border-radius: 12px 12px 20px 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,.5);
+}
+
+/* CREAM */
+.cream {
+    position: absolute;
+    top: 35px;
+    width: 200px;
+    height: 35px;
+    background: white;
+    border-radius: 20px;
+    z-index: 2;
+}
+
+/* CANDLE */
+.candle {
+    position: absolute;
+    left: 94px;
+    top: 0;
+    width: 14px;
+    height: 55px;
+    background: #ffd84d;
+    border-radius: 5px;
+    z-index: 3;
+}
+
+/* FLAME */
+.flame {
+    position: absolute;
+    left: 91px;
+    top: -25px;
+    width: 20px;
+    height: 30px;
+    background: orange;
+    border-radius: 50%;
+    box-shadow: 0 0 20px orange;
+    z-index: 4;
+    animation: flame 0.5s infinite alternate;
+}
+
+@keyframes flame {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.25);
+    }
+}
+
+/* SPARKLES */
+.sparkle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: white;
+    border-radius: 50%;
+    animation: sparkle 1.5s infinite alternate;
+}
+
+@keyframes sparkle {
+    from {
+        opacity: .2;
+        transform: scale(.5);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1.5);
+    }
+}
+
+/* MESSAGE */
+.message {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 20px;
+    font-weight: bold;
+    color: #ffd1e5;
+    opacity: 0;
+    animation: messageIn 1.5s forwards;
+    animation-delay: 3s;
+}
+
+@keyframes messageIn {
+    to {
+        opacity: 1;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="title">
+    🎉 Birthday Surprise 🎉
+</div>
+
+<div class="scene">
+
+    <div class="heart"></div>
+
+    <div class="bow">
+        <div class="arc"></div>
+        <div class="string"></div>
+        <div class="arrow"></div>
+    </div>
+
+    <div class="cake">
+        <div class="flame"></div>
+        <div class="candle"></div>
+        <div class="cream"></div>
+        <div class="cake-body"></div>
+    </div>
+
+    <div class="sparkle" style="left:10%;top:15%"></div>
+    <div class="sparkle" style="left:20%;top:30%"></div>
+    <div class="sparkle" style="left:80%;top:20%"></div>
+    <div class="sparkle" style="left:88%;top:45%"></div>
+    <div class="sparkle" style="left:65%;top:70%"></div>
+    <div class="sparkle" style="left:35%;top:65%"></div>
+
+    <div class="message">
+        🎂 Happy Birthday! ❤️
+    </div>
+
+</div>
+
+</body>
+</html>
